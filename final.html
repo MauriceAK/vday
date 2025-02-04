@@ -6,6 +6,23 @@
   <!-- Google Fonts for cute styling -->
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* Example styling for a vertical (iPhone) video look */
+    .vertical-video {
+      width: 100%;
+      max-width: 400px; /* Adjust as desired for your layout */
+      aspect-ratio: 9 / 16; /* Helps maintain vertical orientation */
+      object-fit: cover;    /* Ensures video covers the container if aspect ratio differs */
+      display: block;
+      margin: 0 auto;
+    }
+    .vertical-video-text {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 1.2em;
+      color: var(--primary-color, #d6336c); /* Fallback to #d6336c if variable isn't set */
+    }
+  </style>
 </head>
 <body class="final-page">
   <div class="final-note fade-in">
@@ -14,22 +31,19 @@
       Thank you for being the light of my life. I hope these moments captured remind you of our incredible journey together.
     </p>
   </div>
-  <div class="video-container slide-in-up">
-    <!-- Embed your video montage here -->
-    <video controls>
+  
+  <div class="video-container slide-in-up" style="text-align: center;">
+    <!-- iPhone-style vertical video -->
+    <video controls class="vertical-video">
       <source src="videos/montage.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
+    <!-- Text under the video -->
+    <p class="vertical-video-text" style="font-family: 'Pacifico', cursive;">
+      Happy Valentine's Day Jessie,<br>
+      I am excited to see you next week
+    </p>
   </div>
-  <!-- Reply Form Section -->
-  <div class="reply-form-container fade-in">
-    <h2 class="slide-in-up">Your Reply</h2>
-    <form action="https://formspree.io/f/mnnjvrkd" method="POST">
-      <textarea name="reply" placeholder="Type your reply here..." required></textarea>
-      <!-- Optionally include a hidden input to set an email subject -->
-      <input type="hidden" name="_subject" value="New Valentine Reply!">
-      <button type="submit" class="reply-button slide-in-up">Send Reply</button>
-    </form>
-  </div>
+  
 </body>
 </html>
