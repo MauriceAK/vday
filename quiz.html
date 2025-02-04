@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Our Quiz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Fonts for cute styling -->
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Additional inline CSS for multiple-choice grid layout -->
+  <style>
+    .mcq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;  /* Two equal columns */
+      gap: 10px;                     /* Adjust spacing as needed */
+      margin: 10px 0;
+    }
+    .mcq-option {
+      display: flex;
+      align-items: center;
+    }
+    .mcq-option label {
+      margin-left: 5px;
+    }
+  </style>
+</head>
+<body class="quiz-page">
+  <div class="quiz-container fade-in">
+    <h2 class="slide-in-up">Test Of Us</h2>
+    <!-- Progress indicator -->
+    <div id="progress" class="progress-indicator slide-in-up">Progress: 0/11</div>
+
+    <!-- Question 1: What date we started dating (date input) -->
+    <form class="question-form slide-in-up" data-question="q1">
+      <label for="q1">1. What date did we start dating?</label><br>
+      <!-- Use an input type="date". Replace the correct date with your actual date as needed. -->
+      <input type="date" id="q1" name="q1">
+      <button type="submit" class="check-button">Check Answer</button>
+      <span class="feedback" id="feedback-q1"></span>
+    </form>
+
+    <!-- Question 2: Where did we meet (MCQ, displayed two per row) -->
+    <form class="question-form slide-in-up" data-question="q2">
+      <label>2. Where did we meet?</label><br>
+      <div class="mcq-grid">
+        <div class="mcq-option">
+          <input type="radio" id="q2a" name="q2" value="kylas apartment">
+          <label for="q2a">Kyla's Apartment</label>
+        </div>
+        <div class="mcq-option">
+          <input type="radio" id="q2b" name="q2" value="modeling board meeting">
+          <label for="q2b">Modeling Board Meeting</label>
+        </div>
+        <div class="mcq-option">
+          <input type="radio" id="q2c" name="q2" value="sky bar">
+          <label for="q2c">Sky Bar</label>
+        </div>
+        <div class="mcq-option">
+          <input type="radio" id="q2d" name="q2" value="on campus">
+          <label for="q2d">On Campus</label>
+        </div>
+      </div>
+      <button type="submit" class="check-button">Check Answer</button>
+      <span class="feedback" id="feedback-q2"></span>
+    </form>
+
+    <!-- Question 3: When was our first kiss (MCQ, displayed two per row) -->
+    <form class="question-form slide-in-up" data-question="q3">
+      <label>3. When was our first kiss?</label><br>
+      <div class="mcq-grid">
+        <div class="mcq-option">
+          <input type="radio" id="q3a" name="q3" value="first day meeting">
+          <label for="q3a">First Day Meeting</label>
+        </div>
+        <div class="mcq-option">
+          <input type="radio" id="q3b" name="q3" value="second day meeting">
+          <label for="q3b">Second Day Meeting</label>
+        </div>
+        <div class="mcq-option">
+          <input type="radio" id="q3c" name="q3" value="first date">
+          <label for="q3c">First Date</label>
+        </div>
+        <div class="mcq-option">
+          <input type="radio" id="q3d" name="q3" value="second date">
+          <label for="q3d">Second Date</label>
+        </div>
+      </div>
+      <button type="submit" class="check-button">Check Answer</button>
+      <span class="feedback" id="feedback-q3"></span>
+    </form>
+
+    <!-- Question 4: Favorite server at Turkish cafe (open ended) -->
+    <form class="question-form slide-in-up" data-question="q4">
+      <label for="q4">4. What was the name of our favorite server at the Turkish cafe?</label><br>
+      <img src="turkish.png" style="max-width:100%; height: 50px; margin:10px 0;">
+      <input type="text" id="q4" name="q4" placeholder="Your answer here">
+      <button type="submit" class="check-button">Check Answer</button>
+      <span class="feedback" id="feedback-q4"></span>
+    </form>
+
+    <!-- Question 5: Date night event we like in new cities (open ended) -->
+    <form class="question-form slide-in-up" data-question="q5">
+      <label for="q5">5. What date night event do we like to look for in new cities?</label><br>
+      <input type="text" id="q5" name="q5" placeholder="Your answer here">
+      <button type="submit" class="check-button">Check Answer</button>
+      <span class="feedback" id="feedback-q5"></span>
+    </form>
+
+    <!-- Question 6: City we have NOT been to a comedy club in (MCQ, displayed two per row) -->
+    <form class="question-form slide-in-up" data-question="q6">
+      <label>6. What city have we NOT been to the aforementioned date night event in?</label><br>
+      <div class="mcq-grid">
+        <div class="mcq-option">
+          <input type="radio" id="q6a" name="q6" value="austin">
+          <label for="q6a">Austin</label>
+        </div>
+        <div class="mcq-option">
+          <input type="radio" id="q6b" name="q6" value="dallas">
+          <label for="q6b">Dallas</label>
+        </div>
+        <div class="mcq-option">
+          <input type="radio" id="q6c" name="q6" value="seatlle">
+          <label for="q6c">Seattle</label>
+        </div>
+        <div class="mcq-option">
+          <input type="radio" id="q6d" name="q6" value="bellevue">
+          <label for="q6d">Bellevue</label>
+        </div>
+      </div>
+      <button type="submit" class="check-button">Check Answer</button>
+      <span class="feedback" id="feedback-q6"></span>
+    </form>
+
+    <!-- Question 7: City of the prized picture (open ended) with image display and optional file upload -->
+    <form class="question-form slide-in-up" data-question="q7">
+        <label for="q7">7. What city was this prized picture taken in?</label><br>
+        <!-- Picture slot: display your converted GIF -->
+        <img src="prague.gif" alt="Live Photo in Question" style="max-width:50%; height:auto; margin:10px 0;">
+        <input type="text" id="q7" name="q7" placeholder="Your answer here">
+        <br><br>
+        <button type="submit" class="check-button">Check Answer</button>
+        <span class="feedback" id="feedback-q7"></span>
+    </form>
+  
+    <!-- Question 8: Go-to dinner to cook together (open ended) -->
+    <form class="question-form slide-in-up" data-question="q8">
+      <label for="q8">8. What is our go-to dinner to cook together?</label><br>
+      <input type="text" id="q8" name="q8" placeholder="Your answer here">
+      <button type="submit" class="check-button">Check Answer</button>
+      <span class="feedback" id="feedback-q8"></span>
+    </form>
+
+    <!-- Question 9: How much do you love me (slider 0-10; any answer accepted) -->
+    <form class="question-form slide-in-up" data-question="q9">
+      <label for="q9">9. How much do you love me?</label><br>
+      <img src="augustiner.jpg" style="max-width:50%; height: auto; margin:10px 0;"><br>
+      <input type="range" id="q9" name="q9" min="0" max="10" step="1" value="5">
+      <div id="sliderVal-q9">5</div>
+      <button type="submit" class="check-button">Check Answer</button>
+      <span class="feedback" id="feedback-q9"></span>
+    </form>
+
+    <!-- Question 10: How much do I love you (slider 0-100; correct answer is 100) -->
+    <form class="question-form slide-in-up" data-question="q10">
+      <label for="q10">10. How much do I love you?</label><br>
+      <img src="germwedding.jpg" style="max-width:50%; height: auto; margin:10px 0;"><br>
+      <input type="range" id="q10" name="q10" min="0" max="100" step="1" value="50">
+      <div id="sliderVal-q10">50</div>
+      <button type="submit" class="check-button">Check Answer</button>
+      <span class="feedback" id="feedback-q10"></span>
+    </form>
+    
+    <form class="question-form slide-in-up" data-question="q11">
+        <label for="q11">11. How much does Lani miss you?</label><br>
+        <img src="lani.JPG" style="max-width:50%; height: auto; margin:10px 0;"><br>
+        <input type="range" id="q11" name="q11" min="0" max="1000" step="1" value="500">
+        <div id="sliderVal-q11">500</div>
+        <button type="submit" class="check-button">Check Answer</button>
+        <span class="feedback" id="feedback-q11"></span>
+    </form>
+      
+
+    <!-- Global Submit Button: visible only when all questions are correct -->
+    <div id="submitAllContainer" style="display:none; text-align:center; margin-top:20px;">
+      <button id="submitAll" class="quiz-button">Submit Quiz</button>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

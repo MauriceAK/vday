@@ -1,0 +1,410 @@
+/* css/styles.css */
+
+/* Define theme variables for a pale pink Valentine’s look */
+:root {
+    --primary-bg: #ffe6f0;       /* pale pink */
+    --secondary-bg: #fff0f5;     /* soft lavender pink */
+    --primary-color: #d6336c;    /* deep, romantic pink */
+    --secondary-color: #ff6b81;  /* playful pink for buttons and links */
+    --accent-color: #ffc1cc;     /* light accent pink */
+    --font-body: 'Lato', sans-serif;
+    --font-heading: 'Pacifico', cursive;
+  }
+  
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: var(--font-body);
+    background: var(--primary-bg);
+    color: var(--primary-color);
+  }
+  
+  /* ----------------- Animations ----------------- */
+  
+  /* Fade In Animation */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  .fade-in {
+    animation: fadeIn 1s ease-in-out forwards;
+  }
+  
+  /* Slide In Up Animation */
+  @keyframes slideInUp {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  .slide-in-up {
+    animation: slideInUp 0.8s ease-in-out forwards;
+  }
+  
+  /* Utility class for delaying animation */
+  .fade-in-delay {
+    animation: fadeIn 1s ease-in-out forwards;
+    animation-delay: 0.5s;
+    opacity: 0; /* Start hidden so delay is noticeable */
+  }
+  
+  /* ----------------- Landing Page ----------------- */
+  .landing-page {
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .landing {
+    /* Background image placeholder: Replace '../images/your-photo.jpg' with your low-opacity picture of you two */
+    background: url('../images/your-photo.jpg') no-repeat center center/cover;
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .landing::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--primary-bg);
+    opacity: 0.5;
+  }
+  
+  /* Main heading on landing page */
+  .landing h1 {
+    position: relative;
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+    z-index: 1;
+  }
+  
+  /* Clickable text styled as link */
+  .start-link {
+    position: relative;
+    z-index: 1;
+    font-size: 1.5em;
+    text-decoration: none; /* Remove underline */
+    color: var(--secondary-color);
+    cursor: pointer;
+    transition: color 0.3s, opacity 0.3s;
+    margin-top: 30vh; /* Lower on the screen */
+  }
+  .start-link:hover {
+    color: var(--accent-color);
+    opacity: 0.7; /* Fade to lower opacity when hovered */
+  }
+  
+  /* ----------------- Floral Patterns (Homepage Extras) ----------------- */
+  .floral-pattern {
+    position: absolute;
+    background: url('../images/floral-pattern.png') no-repeat center center;
+    background-size: contain;
+    width: 150px;
+    height: 150px;
+    opacity: 0.8;
+    animation: float 5s ease-in-out infinite;
+    pointer-events: none; /* So they don’t block clicks on the link */
+  }
+  
+  .pattern-top-left {
+    top: 10%;
+    left: 5%;
+  }
+  
+  .pattern-bottom-right {
+    bottom: 10%;
+    right: 5%;
+  }
+  
+  /* ----------------- Quiz Page ----------------- */
+  .quiz-page {
+    background: var(--primary-bg);
+    padding: 50px 20px;
+    min-height: 100vh;
+  }
+  
+  .quiz-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: var(--secondary-bg);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  
+  .quiz-container h2 {
+    font-family: var(--font-heading);
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+  }
+  
+  /* Center each question form */
+  .question-form {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .question-form label {
+    font-weight: bold;
+  }
+  
+  /* Style for open answer text inputs */
+  .question-form input[type="text"] {
+    width: 90%;
+    padding: 10px;
+    border: 2px solid var(--primary-color);
+    border-radius: 5px;
+    margin-top: 5px;
+  }
+  
+  /* ----------------- Custom Check Button Styling ----------------- */
+  /* These are the smaller, centered "Check Answer" buttons */
+  .check-button {
+    display: block;
+    margin: 10px auto;
+    padding: 5px 10px;
+    font-size: 0.9em;
+    background-color: var(--secondary-color);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-family: var(--font-body);
+  }
+  .check-button:hover {
+    background-color: var(--accent-color);
+  }
+  
+  /* Feedback message styling */
+  .feedback {
+    display: block;
+    text-align: center;
+    margin-top: 5px;
+  }
+  
+  /* Quiz button (global submit) styling */
+  .quiz-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    background-color: var(--secondary-color);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-family: var(--font-body);
+    margin-top: 20px;
+  }
+  
+  .quiz-button:hover {
+    background-color: var(--accent-color);
+  }
+  
+  .error {
+    color: #ff0000;
+    text-align: center;
+    margin-top: 10px;
+    display: none;
+  }
+  
+  /* ----------------- Note Page ----------------- */
+  .note-page {
+    background: var(--primary-bg);
+    padding: 40px 20px;
+    min-height: 100vh;
+  }
+  
+  .notebook {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 40px;
+    background: var(--secondary-bg);
+    position: relative;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 10px;
+  }
+  
+  .notebook h2 {
+    font-family: var(--font-heading);
+    color: var(--primary-color);
+  }
+  
+  .notebook p {
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  
+  .flower-animation {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: url('../tulip.jpg') no-repeat center center;
+    background-size: contain;
+    animation: float 4s ease-in-out infinite;
+    opacity: 0.8;
+  }
+  
+  .flower-left {
+    top: 20px;
+    left: -40px;
+  }
+  
+  .flower-right {
+    bottom: 20px;
+    right: -40px;
+  }
+  
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+  }
+  
+  .next-button {
+    display: block;
+    margin: 30px auto;
+    padding: 10px 25px;
+    font-size: 1.2em;
+    background-color: var(--secondary-color);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .next-button:hover {
+    background-color: var(--accent-color);
+  }
+  
+  /* ----------------- Final Page ----------------- */
+  .final-page {
+    background: var(--primary-bg);
+    padding: 40px 20px;
+    min-height: 100vh;
+    text-align: center;
+  }
+  
+  .final-note {
+    margin-bottom: 30px;
+  }
+  
+  .final-note h2 {
+    font-family: var(--font-heading);
+    color: var(--primary-color);
+  }
+  
+  .video-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  video {
+    width: 100%;
+    border: 5px solid var(--secondary-color);
+    border-radius: 10px;
+  }
+  
+  /* ----------------- Reply Form Styling ----------------- */
+  .reply-form-container {
+    background: var(--secondary-bg);
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  
+  .reply-form-container h2 {
+    font-family: var(--font-heading);
+    margin-bottom: 15px;
+    color: var(--primary-color);
+  }
+  
+  .reply-form-container textarea {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid var(--primary-color);
+    border-radius: 5px;
+    min-height: 150px;
+    margin-bottom: 15px;
+    font-family: var(--font-body);
+  }
+  
+  .reply-button {
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: var(--secondary-color);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .reply-button:hover {
+    background-color: var(--accent-color);
+  }
+  
+  /* ----------------- General Styling ----------------- */
+  a {
+    color: var(--secondary-color);
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  .heart-button {
+    width: 200px;
+    height: 200px;
+    background: url('../heart.png') no-repeat center center;
+    background-size: contain;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--font-heading);
+    font-size: 1.2em;
+    color: var(--primary-color);
+    margin: 20px auto;
+    transition: transform 0.3s ease;
+  }
+  
+  .heart-button:hover {
+    transform: scale(1.05);
+  }
+  
+  .heart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Optionally, set a height if you want vertical centering in a specific area */
+    height: 100px;
+  }
+  
+  

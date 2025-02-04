@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Password Page</title>
+  <!-- Set the viewport for mobile devices -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Import the VT323 tech font -->
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  <!-- Link to your external CSS if needed -->
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* Mobile-friendly styling for the password page */
+    body {
+      background: var(--primary-bg, #ffe6f0); /* fallback color */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: 'VT323', monospace;
+      margin: 0;
+      padding: 20px; /* some padding so content doesn't touch the edges */
+    }
+    .password-container {
+      background: var(--secondary-bg, #fff0f5); /* fallback */
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      text-align: center;
+      width: 100%;
+      max-width: 400px;  /* Limit width on larger screens */
+    }
+    .password-container h1 {
+      font-family: 'VT323', monospace;
+      margin-bottom: 20px;
+      color: var(--primary-color, #d6336c);
+      font-size: 2em;
+    }
+    .password-container label {
+      display: block;
+      margin: 15px 0 5px;
+      font-size: 1.2em;
+    }
+    .password-container input[type="text"] {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      font-size: 1em;
+      border: 2px solid var(--primary-color, #d6336c);
+      border-radius: 5px;
+      margin: 0 auto;
+      text-align: center;
+      font-family: 'VT323', monospace;
+    }
+    .password-container button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: var(--secondary-color, #ff6b81);
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+      font-family: 'VT323', monospace;
+      font-size: 1em;
+    }
+    .password-container button:hover {
+      background: var(--accent-color, #ffc1cc);
+    }
+    .error-message {
+      color: red;
+      margin-top: 15px;
+      font-size: 1em;
+    }
+  </style>
+</head>
+<body>
+  <div class="password-container">
+    <h1>Enter Password</h1>
+    <form id="passwordForm">
+      <div>
+        <label for="q1">What do I say brainlessly when I open a laptop?</label>
+        <input type="text" id="q1" name="q1" placeholder="Your answer here">
+      </div>
+      <div>
+        <label for="q2">What nickname do you call me when I spoil you big time?</label>
+        <input type="text" id="q2" name="q2" placeholder="Your answer here">
+      </div>
+      <button type="submit">Enter</button>
+      <div class="error-message" id="errorMsg"></div>
+    </form>
+  </div>
+  <script>
+    document.getElementById('passwordForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      // Get and normalize the answers
+      var answer1 = document.getElementById('q1').value.trim().toLowerCase();
+      var answer2 = document.getElementById('q2').value.trim().toLowerCase();
+      
+      // Expected answers
+      var correctAnswer1 = "lappity toppity";
+      var correctAnswer2 = "big zaddy mau";
+      
+      if (answer1 === correctAnswer1 && answer2 === correctAnswer2) {
+        // Both answers are correct: redirect to the main landing page
+        window.location.href = "home.html";
+      } else {
+        // Display an error message if answers are incorrect
+        document.getElementById('errorMsg').textContent = "Incorrect password. Please try again.";
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Our Memories</title>
+  <!-- Google Fonts for cute styling -->
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="final-page">
+  <div class="final-note fade-in">
+    <h2 class="slide-in-up">A Final Note</h2>
+    <p class="fade-in-delay">
+      Thank you for being the light of my life. I hope these moments captured remind you of our incredible journey together.
+    </p>
+  </div>
+  <div class="video-container slide-in-up">
+    <!-- Embed your video montage here -->
+    <video controls>
+      <source src="videos/montage.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+  <!-- Reply Form Section -->
+  <div class="reply-form-container fade-in">
+    <h2 class="slide-in-up">Your Reply</h2>
+    <form action="https://formspree.io/f/mnnjvrkd" method="POST">
+      <textarea name="reply" placeholder="Type your reply here..." required></textarea>
+      <!-- Optionally include a hidden input to set an email subject -->
+      <input type="hidden" name="_subject" value="New Valentine Reply!">
+      <button type="submit" class="reply-button slide-in-up">Send Reply</button>
+    </form>
+  </div>
+</body>
+</html>
