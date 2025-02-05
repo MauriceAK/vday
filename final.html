@@ -3,24 +3,74 @@
 <head>
   <meta charset="UTF-8">
   <title>Our Memories</title>
+  <!-- Mobile-friendly scaling -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Google Fonts for cute styling -->
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" type="image/png" href="heart.png" sizes="16x16">
   <style>
-    /* Example styling for a vertical (iPhone) video look */
-    .vertical-video {
+    /* Container for the final note */
+    .final-note {
+      text-align: center;
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 0 20px;
+    }
+    .final-note h2 {
+      font-family: 'Pacifico', cursive;
+      font-size: 2em;
+      margin-bottom: 15px;
+      /* Use your main pink color as a fallback if var not set */
+      color: var(--primary-color, #d6336c);
+    }
+    .final-note p {
+      font-family: 'Lato', sans-serif;
+      font-size: 1.2em;
+      line-height: 1.5;
+      /* Now uses the same pink color throughout */
+      color: var(--primary-color, #d6336c);
+      margin-bottom: 20px;
+    }
+
+    /* Video container with 4:3 ratio */
+    .video-container {
+      text-align: center;
+      max-width: 480px;
+      margin: 0 auto 30px auto;
+    }
+    .final-video {
       width: 100%;
-      max-width: 400px; /* Adjust as desired for your layout */
-      aspect-ratio: 9 / 16; /* Helps maintain vertical orientation */
-      object-fit: cover;    /* Ensures video covers the container if aspect ratio differs */
+      max-width: 480px;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
       display: block;
       margin: 0 auto;
     }
-    .vertical-video-text {
-      text-align: center;
-      margin-top: 20px;
+
+    /* Paragraph for the bottom text, same color & font as top paragraph */
+    .video-message {
+      font-family: 'Lato', sans-serif;
       font-size: 1.2em;
-      color: var(--primary-color, #d6336c); /* Fallback to #d6336c if variable isn't set */
+      line-height: 1.5;
+      color: var(--primary-color, #d6336c);
+      margin-top: 15px;
+      margin-bottom: 0;
+      padding: 0 20px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Example media query for small screens */
+    @media (max-width: 480px) {
+      .final-note h2 {
+        font-size: 1.8em;
+      }
+      .final-note p,
+      .video-message {
+        font-size: 1.1em;
+      }
     }
   </style>
 </head>
@@ -28,22 +78,20 @@
   <div class="final-note fade-in">
     <h2 class="slide-in-up">A Final Note</h2>
     <p class="fade-in-delay">
-      Thank you for being the light of my life. I hope these moments captured remind you of our incredible journey together.
+      Thank you for being the light of my life. These are some of my favorite pictures of you and memories. I hope these moments captured remind you of our incredible journey together.
     </p>
   </div>
   
-  <div class="video-container slide-in-up" style="text-align: center;">
-    <!-- iPhone-style vertical video -->
-    <video controls class="vertical-video">
-      <source src="videos/montage.mp4" type="video/mp4">
+  <div class="video-container slide-in-up">
+    <video controls class="final-video">
+      <source src="vid.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
-    <!-- Text under the video -->
-    <p class="vertical-video-text" style="font-family: 'Pacifico', cursive;">
-      Happy Valentine's Day Jessie,<br>
+    <!-- Bottom text in the same pink color & font -->
+    <p class="video-message fade-in-delay">
+      Happy Valentine's Day Jessie<br>
       I am excited to see you next week
     </p>
   </div>
-  
 </body>
 </html>
