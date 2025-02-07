@@ -76,6 +76,8 @@
   </style>
 </head>
 <body>
+  <div class="background-overlay"></div>
+
   <div class="password-container">
     <h1>Enter Password</h1>
     <form id="passwordForm">
@@ -84,7 +86,7 @@
         <input type="text" id="q1" name="q1" placeholder="Your answer here">
       </div>
       <div>
-        <label for="q2">What nickname do you call me when I spoil you big time?</label>
+        <label for="q2">What nickname do you call me when I spoil you big, big, BIG time?</label>
         <input type="text" id="q2" name="q2" placeholder="Your answer here">
       </div>
       <button type="submit">Enter</button>
@@ -93,23 +95,32 @@
   </div>
   <script>
     document.getElementById('passwordForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      // Get and normalize the answers
-      var answer1 = document.getElementById('q1').value.trim().toLowerCase();
-      var answer2 = document.getElementById('q2').value.trim().toLowerCase();
-      
-      // Expected answers
-      var correctAnswer1 = "lappity toppity";
-      var correctAnswer2 = "big zaddy mau";
-      
-      if (answer1 === correctAnswer1 && answer2 === correctAnswer2) {
-        // Both answers are correct: redirect to the main landing page
-        window.location.href = "home.html";
-      } else {
-        // Display an error message if answers are incorrect
-        document.getElementById('errorMsg').textContent = "Incorrect password. Please try again.";
-      }
-    });
+    e.preventDefault();
+
+    // Get and normalize the answers
+    var answer1 = document.getElementById('q1').value.trim().toLowerCase();
+    var answer2 = document.getElementById('q2').value.trim().toLowerCase();
+
+    // Expected answer variations
+    var correctAnswers1 = [
+    "lapity topity", "lapity toppity", "lapity toppitty", "lapity topitty",
+    "lappity topity", "lappity toppity", "lappity toppitty", "lappity topitty",
+    "lapitty topity", "lapitty toppity", "lapitty toppitty", "lapitty topitty",
+    "lappitty topity", "lappitty toppity", "lappitty toppitty", "lappitty topitty"
+];
+
+    var correctAnswers2 = ["big zaddy mau", "zaddy", "big zaddy"];
+
+    // Check if the answer exists in the array
+    var isAnswer1Correct = correctAnswers1.includes(answer1);
+    var isAnswer2Correct = correctAnswers2.includes(answer2);
+
+    if (isAnswer1Correct && isAnswer2Correct) {
+        window.location.href = "home.html"; // Redirect on success
+    } else {
+        alert("Incorrect. Try again!");
+    }
+  });
   </script>
 </body>
 </html>

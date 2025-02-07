@@ -406,5 +406,43 @@
     /* Optionally, set a height if you want vertical centering in a specific area */
     height: 100px;
   }
+
+  /* Background Overlay for All Pages */
+.background-overlay {
+  position: fixed; /* Ensures it stays fixed while scrolling */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('../flowbg2.png') no-repeat center center;
+  background-size: 25%; /* Ensures it covers the whole page */
+  background-repeat: repeat; /* Ensures it tiles if needed */
+  pointer-events: none; /* Ensures it doesn't block user interactions */
+  opacity: .5; /* Adjust transparency */
+  z-index: -1; /* Puts it behind all content */
+}
+
+/* Text Box for Readability */
+/* Main Text Box (For Larger Paragraphs) */
+.text-box {
+  background: rgba(255, 245, 248, 0.8); /* Soft pink with slight transparency */
+  border-radius: 15px; /* Rounded corners */
+  padding: 20px; /* Space inside */
+  max-width: 800px; /* Keep it contained */
+  margin: 20px auto; /* Center it */
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Smaller Bubble for the Bottom Text */
+.small-text-box {
+  display: inline-block; /* Makes it fit text width */
+  padding: 10px 15px; /* Less padding */
+  max-width: 600px; /* Prevents it from being too wide */
+  font-size: 1.1em; /* Keeps font size normal */
+}
+
+
+
   
   
