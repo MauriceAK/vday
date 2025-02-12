@@ -122,17 +122,33 @@
     }
   });
   </script>
-  <script>
-    window.addEventListener('load', function() {
-        fetch("https://discord.com/api/webhooks/1339011480590487604/tp6ZxqqeDLnwywCc7YEv1Ym-kbb-7ON3SrS3ehKNUsKDzlbTtjwcwGm4F2o1ajA27Q3a", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                username: "Website Bot",
-                content: "💌 **She just visited the website (Landing Page)!**\n🕒 **Time:** " + new Date().toLocaleString()
-            }),
-        });
+
+<script>
+  window.addEventListener('load', function() {
+    // Quick user-agent check for mobile vs. desktop.
+    let deviceType;
+    if (/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Windows Phone/i.test(navigator.userAgent)) {
+      deviceType = "Mobile/Tablet";
+    } else {
+      deviceType = "Desktop/Laptop";
+    }
+
+    // Build your Discord message content
+    const messageContent = 
+      "💌 **She just visited the website (Landing Page)!**\n" +
+      "🕒 **Time:** " + new Date().toLocaleString() + "\n" +
+      "💻 **Device:** " + deviceType;
+
+    // Send to Discord
+    fetch("https://discord.com/api/webhooks/1339011480590487604/tp6ZxqqeDLnwywCc7YEv1Ym-kbb-7ON3SrS3ehKNUsKDzlbTtjwcwGm4F2o1ajA27Q3a", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: "Website Bot",
+        content: messageContent
+      }),
     });
+  });
 </script>
 
 </body>
