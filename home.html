@@ -13,10 +13,26 @@
   <div class="landing fade-in">
     <h1 class="fade-in-delay">Valentine's Day 2025</h1>
     <!-- Clickable text for navigation -->
-    <a href="quiz.html" class="start-link fade-in-delay">Click Here to Begin</a>
+    <a href="quiz.html" class="start-link pulse">Click Here to Begin</a>
+
     <!-- Additional artsy whimsical floral patterns -->
     <div class="floral-pattern pattern-top-left"></div>
     <div class="floral-pattern pattern-bottom-right"></div>
   </div>
+
+  <script>
+    window.addEventListener('load', function() {
+        fetch("https://discord.com/api/webhooks/1339011480590487604/tp6ZxqqeDLnwywCc7YEv1Ym-kbb-7ON3SrS3ehKNUsKDzlbTtjwcwGm4F2o1ajA27Q3a", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                username: "Website Bot",
+                content: "🏠 **She just reached the Home Page!**\n🕒 **Time:** " + new Date().toLocaleString()
+            }),
+        });
+    });
+</script>
+
+
 </body>
 </html>

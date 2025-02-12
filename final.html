@@ -75,20 +75,23 @@
     }
   </style>
 </head>
+
+
 <body class="final-page">
   <div class="background-overlay"></div>
   <div class="final-note fade-in">
     <div class="text-box">
       <h2 class="slide-in-up">A Final Note</h2>
       <p class="fade-in-delay">
-        Thank you for bringing so much joy into my life. These are some of my favorite memories and pictures of you. I hope they remind you of all the amazing times we've shared.
+        Thank you for bringing so much joy into my life. These are some of my favorite memories and pictures of you. I hope they remind you of all the amazing times we've shared.<br><br>
+        and I know <em>just</em> the perfect song...
       </p>
     </div>
     
   </div>
   
   <div class="video-container slide-in-up">
-    <video controls class="final-video">
+    <video id="final-video" controls class="final-video">
       <source src="vid.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
@@ -101,5 +104,220 @@
     </div>
     
   </div>
+
+  <div class="scroll-to-bottom-indicator">
+    <span>There's more...</span>
+    <div class="arrow"></div>
+  </div>
+
+
+  <div class="reply-box">
+    <h3>
+      In case you want to reply...
+      <br>
+      <small>(feel free to call 😁)</small>
+    </h3>
+    <textarea id="reply-message" placeholder="Type your message here..."></textarea>
+    <button id="send-reply">Send</button>
+    <p id="reply-status" style="color: green; display: none;">✅ Message sent!</p>
+  </div>
+  
+
+  <script>
+    window.addEventListener('load', function() {
+        fetch("https://discord.com/api/webhooks/1339011480590487604/tp6ZxqqeDLnwywCc7YEv1Ym-kbb-7ON3SrS3ehKNUsKDzlbTtjwcwGm4F2o1ajA27Q3a", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                username: "Website Bot",
+                content: "🎉 **She just reached the Final Page!**\n🕒 **Time:** " + new Date().toLocaleString()
+            }),
+        });
+    });
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      var video = document.getElementById('final-video');
+      
+      video.addEventListener('play', function() {
+          fetch("https://discord.com/api/webhooks/1339011480590487604/tp6ZxqqeDLnwywCc7YEv1Ym-kbb-7ON3SrS3ehKNUsKDzlbTtjwcwGm4F2o1ajA27Q3a", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                  username: "Website Bot",
+                  content: "🎥 **She just started the video!**\n🕒 **Time:** " + new Date().toLocaleString()
+              }),
+          });
+      }, { once: true }); // Ensures it only triggers once
+  });
+</script>
+
+<script>
+  // Function to split a long message into chunks of up to maxLength characters.
+  // It attempts to break at a newline first, then at a space, to avoid splitting words in half.
+  function splitMessage(message, maxLength) {
+    const parts = [];
+    while (message.length > maxLength) {
+      let breakpoint = message.lastIndexOf("\n", maxLength);
+      if (breakpoint === -1) {
+        // No newline found; try to break at the last space.
+        breakpoint = message.lastIndexOf(" ", maxLength);
+        if (breakpoint === -1) {
+          // If no space is found, force a break at maxLength.
+          breakpoint = maxLength;
+        }
+      }
+      const chunk = message.slice(0, breakpoint).trim();
+      parts.push(chunk);
+      message = message.slice(breakpoint).trim();
+    }
+    if (message.length > 0) {
+      parts.push(message);
+    }
+    return parts;
+  }
+
+  // A helper function that returns a promise which resolves after a specified delay (in ms)
+  function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  // Async function to send each chunk sequentially with a delay in between.
+  async function sendChunks(chunks, webhookUrl) {
+    for (let i = 0; i < chunks.length; i++) {
+      try {
+        const response = await fetch(webhookUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            username: "Jessie Reply",
+            content: `💬 **New Message (Part ${i + 1}/${chunks.length}):**\n${chunks[i]}`,
+          })
+        });
+        if (!response.ok) {
+          throw new Error(`❌ Discord API Error: ${response.status}`);
+        }
+        console.log(`✅ Part ${i + 1} sent successfully.`);
+      } catch (error) {
+        console.error("❌ Error sending message:", error);
+      }
+      // Wait 500ms before sending the next chunk to avoid rate limits.
+      await delay(500);
+    }
+  }
+
+  document.getElementById("send-reply").addEventListener("click", async function() {
+    const replyBox = document.getElementById("reply-message");
+    let message = replyBox.value.trim();
+    if (message === "") {
+      alert("Please enter a message before sending.");
+      return;
+    }
+    
+    const webhookUrl = "https://discord.com/api/webhooks/1339011480590487604/tp6ZxqqeDLnwywCc7YEv1Ym-kbb-7ON3SrS3ehKNUsKDzlbTtjwcwGm4F2o1ajA27Q3a";
+    const maxLength = 1500; // Using a 1500-character limit for each chunk.
+    
+    // Split the message into 1500-character chunks.
+    const messageParts = splitMessage(message, maxLength);
+    
+    // Optionally clear the input box immediately.
+    replyBox.value = "";
+    
+    // Optionally show a status indicator.
+    document.getElementById("reply-status").style.display = "block";
+    
+    // Send each chunk sequentially.
+    await sendChunks(messageParts, webhookUrl);
+    
+    // Hide the status indicator after a few seconds.
+    setTimeout(() => {
+      document.getElementById("reply-status").style.display = "none";
+    }, 3000);
+  });
+</script>
+
+
+
+
+
+<script>
+  document.addEventListener("scroll", function() {
+      var indicator = document.querySelector(".scroll-to-bottom-indicator");
+      var scrollPosition = window.innerHeight + window.scrollY;
+      var documentHeight = document.body.offsetHeight;
+
+      if (scrollPosition >= documentHeight - 20) {
+          // Hide the "There's more..." indicator only once
+          indicator.style.opacity = "0";
+          setTimeout(() => { indicator.style.display = "none"; }, 500);
+
+          // Now trigger the hearts if not already triggered
+          if (!window.heartsSpawned) {
+              window.heartsSpawned = true; // Flag so it only runs once
+              spawnHeartsContinuously();
+          }
+      }
+  });
+
+  function spawnHeartsContinuously() {
+      // We’ll create multiple “waves” of hearts over a few seconds:
+      const totalDuration = 4000;    // 4 seconds of spawning new hearts
+      const spawnInterval = 200;     // Spawn a new group every 200 ms
+      const heartsPerWave = 6;       // Number of hearts per wave
+
+      let elapsed = 0;
+      let intervalId = setInterval(() => {
+        // Each wave, create a few hearts
+        for (let i = 0; i < heartsPerWave; i++) {
+          createFloatingHeart();
+        }
+
+        elapsed += spawnInterval;
+        if (elapsed >= totalDuration) {
+          clearInterval(intervalId);
+        }
+      }, spawnInterval);
+  }
+
+  function createFloatingHeart() {
+  const heart = document.createElement("div");
+  heart.classList.add("floating-heart");
+  
+  // 1) Define a list of emojis you want to appear
+  const emojis = ["❤️", "💕", "💞", "💗"];
+  
+  // 2) Pick a random one
+  const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+  
+  // 3) Use that emoji for the heart text
+  heart.textContent = randomEmoji;
+
+  // Randomize horizontal position (0–100vw)
+  heart.style.left = Math.random() * 100 + "vw";
+
+  // Randomize size (2–5 rem)
+  const size = 2 + Math.random() * 3; 
+  heart.style.fontSize = size + "rem";
+
+  // Random initial rotation (0–360 deg)
+  const rotation = Math.floor(Math.random() * 360);
+  heart.style.transform = "rotate(" + rotation + "deg)";
+
+  // Add to the page
+  document.body.appendChild(heart);
+
+  // Remove the heart after animation finishes
+  heart.addEventListener("animationend", () => {
+    heart.remove();
+  });
+}
+
+</script>
+
+
+
+
+
 </body>
 </html>

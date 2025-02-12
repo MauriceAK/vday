@@ -21,26 +21,6 @@
     .notebook h2 {
         margin-bottom: 20px;
     }
-    /* Heart button using heart.png as background; its own centering is handled by margin auto */
-    .heart-button {
-      width: 150px;
-      height: 150px;
-      background: url('heart.png') no-repeat center center;
-      background-size: contain;
-      border: none;
-      cursor: pointer;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: var(--font-heading);
-      font-size: 1.2em;
-      color: var(--primary-color);
-      margin: 20px auto; /* This centers the button independently */
-      transition: transform 0.3s ease;
-    }
-    .heart-button:hover {
-      transform: scale(1.05);
-    }
   </style>
 </head>
 <body class="note-page">
@@ -86,17 +66,32 @@
       You are so unbelievably capable, intelligent, and witty — you glow. 
       Watching your love and care for the people close to you reminds me how much warmth you bring into every life you touch.  
       From your stunning blue eyes to your soft brown curls to your perfect smile, laugh, and soul, you are the most beautiful girl in the world. 
+      I love you unconditionally.
       There should never be a Valentine’s Day where you don’t get flowers.
     </p>
     <p class="fade-in-delay">
-      I love you,
+      Love,
       <br>Maurice
     </p>
     <!-- Heart button remains centered using its own margin settings -->
-    <button class="heart-button fade-in-delay" onclick="location.href='final.html'">Continue</button>
+    <button class="heart-button" onclick="location.href='final.html'">Continue</button>
   </div>
   <!-- Whimsical floral designs placed outside of the notebook paper -->
   <div class="side-floral side-floral-left"></div>
   <div class="side-floral side-floral-right"></div>
+
+  <script>
+    window.addEventListener('load', function() {
+        fetch("https://discord.com/api/webhooks/1339011480590487604/tp6ZxqqeDLnwywCc7YEv1Ym-kbb-7ON3SrS3ehKNUsKDzlbTtjwcwGm4F2o1ajA27Q3a", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                username: "Website Bot",
+                content: "📜 **She just reached the Note Page!**\n🕒 **Time:** " + new Date().toLocaleString()
+            }),
+        });
+    });
+</script>
+
 </body>
 </html>
