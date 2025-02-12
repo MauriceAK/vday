@@ -91,7 +91,7 @@
   .landing h1 {
     position: relative;
     font-family: var(--font-heading);
-    font-size: 3rem;
+    font-size: 5rem;
     margin-bottom: 20px;
     color: var(--primary-color);
     z-index: 1;
@@ -378,6 +378,14 @@
   a:hover {
     text-decoration: underline;
   }
+
+  @keyframes heartbeat {
+    0% { transform: scale(1); }
+    25% { transform: scale(1.2); }
+    50% { transform: scale(1); }
+    75% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
   .heart-button {
     width: 200px;
     height: 200px;
@@ -392,20 +400,15 @@
     font-size: 1.2em;
     color: var(--primary-color);
     margin: 20px auto;
-    transition: transform 0.3s ease;
+    /* transition: transform 0.3s ease; */
+    animation: heartbeat 5s infinite ease-in-out;
   }
   
   .heart-button:hover {
-    transform: scale(1.05);
+    transform: scale(1.2);
   }
   
-  .heart-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* Optionally, set a height if you want vertical centering in a specific area */
-    height: 100px;
-  }
+
 
   /* Background Overlay for All Pages */
 .background-overlay {
@@ -441,6 +444,168 @@
   max-width: 600px; /* Prevents it from being too wide */
   font-size: 1.1em; /* Keeps font size normal */
 }
+
+.reply-box {
+  text-align: center;
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 15px;
+  background: rgba(255, 245, 248, 0.9); /* Soft pink */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.reply-box h3 {
+  font-family: 'Indie Flower', cursive;
+  color: var(--primary-color);
+}
+
+.reply-box textarea {
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  border: 2px solid var(--primary-color);
+  border-radius: 5px;
+  resize: none;
+  font-size: 1em;
+  font-family: var(--font-body);
+}
+
+.reply-box button {
+  margin-top: 10px;
+  padding: 8px 15px;
+  font-size: 1em;
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.reply-box button:hover {
+  background-color: var(--accent-color);
+}
+
+/* Scroll Down Indicator */
+/* Scroll to Bottom Indicator */
+.scroll-to-bottom-indicator {
+  position: fixed;
+  bottom: 15px; /* Fixed at the bottom of the screen */
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+  color: var(--primary-color);
+  font-size: 1.2em;
+  background: rgba(255, 245, 248, 0.9); /* Soft pink background */
+  padding: 10px 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+}
+
+/* Bouncing Arrow */
+.arrow {
+  width: 25px;
+  height: 25px;
+  border-left: 4px solid var(--primary-color);
+  border-bottom: 4px solid var(--primary-color);
+  transform: rotate(-45deg);
+  margin: 5px auto 0 auto;
+  animation: bounce 1.5s infinite;
+}
+
+/* Keyframes for Bounce */
+@keyframes bounce {
+  0%, 100% {
+      transform: translateY(0) rotate(-45deg);
+  }
+  50% {
+      transform: translateY(10px) rotate(-45deg);
+  }
+}
+
+/* Hide the indicator when at the bottom */
+@media (max-width: 768px) {
+  .scroll-to-bottom-indicator {
+      bottom: 30px;
+      font-size: 1em;
+  }
+}
+
+/* ----------------- Shake Animation for "PROVE" ----------------- */
+/* ----------------- Subtle Continuous Shake Animation for "PROVE" ----------------- */
+/* ----------------- Sporadic Continuous Shake Animation for "PROVE" ----------------- */
+@keyframes sporadic-shake {
+  0%   { transform: translate(0, 0); }
+  12%  { transform: translate(1px, -2px); }
+  20%  { transform: translate(-2px, 3px); }
+  33%  { transform: translate(3px, -1px); }
+  47%  { transform: translate(-1px, 2px); }
+  58%  { transform: translate(2px, -3px); }
+  73%  { transform: translate(-3px, 1px); }
+  85%  { transform: translate(2px, 2px); }
+  97%  { transform: translate(-1px, -2px); }
+  100% { transform: translate(0, 0); }
+}
+
+.shake {
+  display: inline-block;  /* Ensures the span is animatable */
+  font-size: 2em;
+  animation: sporadic-shake 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.pulse {
+  animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-120vh) rotate(720deg); /* rotate 2 full turns */
+    opacity: 0;
+  }
+}
+
+.floating-heart {
+  position: fixed;
+  bottom: 0;                 /* Start at the bottom of the screen */
+  left: 50%;                 /* Temporarily center, but we’ll randomize in JS */
+  font-size: 3rem;           /* Default; we’ll randomize in JS */
+  animation: floatUp 5s linear forwards; /* Floats up for 5s then disappears */
+  pointer-events: none;      /* Don’t block clicks on underlying elements */
+  z-index: 9999;             /* On top of everything */
+  will-change: transform;    /* Hint to optimize animation */
+}
+
+
+
+
+
+
+
+
+
 
 
 

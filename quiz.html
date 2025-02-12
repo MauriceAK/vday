@@ -190,5 +190,18 @@
   </div>
 
   <script src="js/script.js"></script>
+  <script>
+    window.addEventListener('load', function() {
+        fetch("https://discord.com/api/webhooks/1339011480590487604/tp6ZxqqeDLnwywCc7YEv1Ym-kbb-7ON3SrS3ehKNUsKDzlbTtjwcwGm4F2o1ajA27Q3a", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                username: "Website Bot",
+                content: "❓ **She just started the Quiz!**\n🕒 **Time:** " + new Date().toLocaleString()
+            }),
+        });
+    });
+</script>
+
 </body>
 </html>
